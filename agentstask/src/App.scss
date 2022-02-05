@@ -1,0 +1,32 @@
+:root {
+  --main-blue: #01b2ee;
+  --secondary-lightblue: #3dcdfe;
+
+  --color-golden: #dcca87;
+  --color-black: #0c0c0c;
+  --color-gray: #545454;
+  --color-crimson: #f5efdb;
+  --color-grey: #aaaaaa;
+  --color-white: #ffffff;
+  --color-bloodred:#8a0303;
+}
+body {
+  background-color: #f4f7fb;
+  color: #4f5864;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.1;
+
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  scroll-behavior: smooth;
+}
+* {
+  font-family: "Roboto", sans-serif;
+}
+
+a {
+  color: unset;
+  text-decoration: none;
+}

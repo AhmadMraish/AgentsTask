@@ -1,0 +1,18 @@
+.login__seller{
+    min-height: 100vh;
+    background-image: url(../../../assets/images/sellerlogin.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    position: relative;
+
+    .seller__form{
+        padding-left: 25px;
+        // background-color: grey;
+        width: 40%;
+        margin: auto;
+        position: absolute;
+        bottom: 23.5%;
+    }
+
+}

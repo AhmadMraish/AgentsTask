@@ -1,0 +1,24 @@
+
+
+
+.login__buyer{
+    min-height: 100vh;
+    background-image: url(../../../assets/Buyer.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    position: relative;
+
+    .login__form{
+        padding-left: 25px;
+        // background-color: grey;
+        width: 40%;
+        margin: auto;
+        position: absolute;
+        bottom: 23.5%;
+    }
+
+}
+.form-control{
+    width: 50% !important;
+}

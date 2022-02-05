@@ -1,0 +1,20 @@
+.landing__container{
+    min-height: 100vh;
+    background-image: url(../../assets/images/landingpage.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    .landing__flexcontainer{
+        transform:translateY(1170%);
+        
+    }
+}
+.btn-group{
+.btn-primary{
+    background-color: var(--color-gray);
+}
+.btn-primary.dropdown-toggle{
+    background-color: var(--color-gray) !important;
+}
+
+}
