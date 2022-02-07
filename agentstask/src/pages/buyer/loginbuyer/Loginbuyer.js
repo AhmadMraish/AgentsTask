@@ -14,8 +14,8 @@ const Loginbuyer = () => {
   const [message, setMessage] = useState(false);
 
   const handleLogin = async (e) => {
-    setMessage(false);
     e.preventDefault();
+    setMessage(false);
     await buyerlogin({ emaill, passwordd }, dispatch);
     if (error) {
       setMessage(true);

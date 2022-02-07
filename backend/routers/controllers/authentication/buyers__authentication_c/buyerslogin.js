@@ -19,6 +19,7 @@ const buyerslogin = async (req, res) => {
       return res.status(404).json({
         success: false,
         message: `The email doesn't exist`,
+        error:error,
       });
     } else if (error) {
       return res.status(500).json({

@@ -8,16 +8,23 @@ import Button from "react-bootstrap/Button";
 
 const Signupbuyer = () => {
   const navigate = useNavigate();
-  const [error, setError] = useState("");
   const [emaill, setEmaill] = useState("");
   const [passwordd, setPasswordd] = useState("");
   const [confirmpassword, setConfirmpasword] = useState("");
   const [phonenumberr, setPhonenumberr] = useState("");
-
+  const [message, setMessage] = useState(false);
   const handlesignupbuyer = async (e) => {
     e.preventDefault();
-    if (passwordd !== confirmpassword) {
-      setError("Passwords do not match");
+
+    var regex = /[\!\@\#\$\%\^\&\*\)\(\+\=\.\<\>\{\}\[\]\:\;\'\"\|\~\`\_\-]/g;
+    if(confirmpassword !== passwordd){
+      setMessage("Password fields do not match");
+    }else if(passwordd.length < 6){
+      setMessage("Password Must be greater Than 6 characters");
+    }else if(regex.test(passwordd) == false){
+      setMessage('Password must contain at least one special character');
+    ///////////////////////////////////
+     
     } else {
       const data = { emaill, passwordd, phonenumberr };
       await axios
@@ -27,10 +34,13 @@ const Signupbuyer = () => {
           navigate("/buyerlogin");
         })
         .catch((error) => {
-          console.log(error);
+          if (error.message == "Request failed with status code 409"){
+            setMessage("Email has already been taken")
+          }
+          console.log("b",error.message);
         });
     }
-  };
+  }
 
   return (
     <div className="signupbuyer__container">
@@ -74,7 +84,7 @@ const Signupbuyer = () => {
             placeholder=""
           />
         </Form.Group>
-        <div>{error}</div>
+        <div>{message}</div>
         <Button onClick={handlesignupbuyer} variant="primary" type="submit">
           Submit
         </Button>

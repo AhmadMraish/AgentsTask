@@ -12,8 +12,8 @@ export const sellerlogin = async (user, dispatch) => {
   
 
   } catch (error) {
-    console.log(error);
-    dispatch(loginFailure(error));
+   await dispatch(loginFailure());
+   
   }
 };
 
@@ -28,7 +28,7 @@ export const buyerlogin = async (user, dispatch) => {
  
     
   } catch (error) {
-    console.log(error);
-    dispatch(loginFailure(error));
+  await  dispatch(loginFailure());
+    
   }
 };

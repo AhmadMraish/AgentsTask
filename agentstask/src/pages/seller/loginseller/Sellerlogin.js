@@ -1,19 +1,32 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext,useEffect } from "react";
 import "./Sellerlogin.scss";
 import { sellerlogin } from "../../../authContext/apiCalls";
 import { AuthContext } from "../../../authContext/AuthContext";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import { CircularProgress } from "@material-ui/core";
 
 const Sellerlogin = () => {
   const [emaill, setEmaill] = useState("");
   const [passwordd, setPasswordd] = useState("");
-  const { dispatch } = useContext(AuthContext);
+  const { dispatch, isFetching, error } = useContext(AuthContext);
+  const [message, setMessage] = useState(false);
 
   const handleLogin = async (e) => {
     e.preventDefault();
+    setMessage(false);
     await sellerlogin({ emaill, passwordd }, dispatch);
+    if (error) {
+      setMessage(true);
+    }
   };
+
+  useEffect(() => {
+    setTimeout(function () {
+      setMessage(false);
+    }, 5000);
+  }, [message]);
+
 
   return (
     <div className="login__seller">
@@ -39,9 +52,10 @@ const Sellerlogin = () => {
           />
         </Form.Group>
 
-        <Button onClick={handleLogin} variant="primary" type="submit">
-          Submit
+        <Button onClick={handleLogin} variant="primary" type="submit"  disabled={isFetching}>
+        {isFetching ? <CircularProgress size="20px" /> : "Login"}
         </Button>
+        {message ? <div>Wrong credentials</div> : ""}
       </Form>
     </div>
   );
