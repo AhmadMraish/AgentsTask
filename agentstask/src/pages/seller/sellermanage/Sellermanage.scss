@@ -4,3 +4,27 @@
 .container{
     padding-left: 0;
 }
+
+#btn-delete{
+    background-color:var(--color-bloodred);
+    border-color:var(--color-bloodred);
+}
+#btn-accept{
+    background-color:var(--color-green);
+    border-color:var(--color-green);
+}
+#btn-reject{
+    background-color:var(--color-orange);
+    border-color:var(--color-orange);
+    
+}
+.nav-item{
+    text-decoration: none !important;
+    color: #4f5864 !important;
+}
+
+.nav-link {
+    text-decoration: none !important;
+    color: #4f5864 !important; 
+}
+

@@ -1,27 +1,27 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState, useContext, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../authContext/AuthContext";
 import { logout } from "../../authContext/AuthActions";
 
 import "./Navigationbar.scss";
 import "bootstrap/dist/css/bootstrap.min.css";
-
 import Navbar from "react-bootstrap/Navbar";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
-import NavDropdown from "react-bootstrap/NavDropdown";
 import Form from "react-bootstrap/Form";
 import FormControl from "react-bootstrap/FormControl";
 import Button from "react-bootstrap/Button";
-import Input from "react-bootstrap/InputGroup";
+
 
 const Navigationbar = () => {
   const { dispatch } = useContext(AuthContext);
   const [toggle, setToggle] = useState(null);
   const navigate = useNavigate();
+  const searchRef = useRef()
 
-  const search = (sellername) => {
-    navigate(`/search/${sellername}`);
+  const search =  () => {
+    
+    navigate(`/search/${searchRef.current.value}`);
   };
 
   useEffect(() => {
@@ -57,17 +57,12 @@ const Navigationbar = () => {
             {toggle ? (
               <>
                 <Link to={`/buyerhome`}>
-                  <Nav.Link href="#action1">Home</Nav.Link>
+                  <Nav.Link id ="nav-link-id" href="#action1">Home</Nav.Link>
                 </Link>
 
-                <NavDropdown title="Link" id="navbarScrollingDropdown">
-                  <Link to={`/myappointments`}>
-                    <NavDropdown.Item href="#action3">
-                      My Appointments
-                    </NavDropdown.Item>
-                  </Link>
-                  
-                </NavDropdown>
+                <Link to={`/myappointments`}>
+                  <Nav.Link href="#action2">My Appointments</Nav.Link>
+                </Link>
               </>
             ) : (
               <>
@@ -80,16 +75,15 @@ const Navigationbar = () => {
 
           <Form className="d-flex">
             <FormControl
-              onChange={(e) => {
-                search(e.target.value);
-              }}
+            //  onSubmit={()=>search()}
+              ref={searchRef}
               type="text"
               placeholder="Search"
               className="me-2"
               aria-label="Search"
             />
             <Button
-              // onClick={search}
+            onClick={()=>search()}
               variant="outline-success"
             >
               Search

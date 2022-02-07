@@ -104,7 +104,7 @@ const Myappointments = () => {
                                     Mobile:{element.phonenumberr}
                                   </Card.Text>
                                   <Card.Text>price:${element.price}</Card.Text>
-                                  <Button
+                                  <Button id="myappointments-btn-primary"
                                     onClick={() =>
                                       handleCancleappointment(element.appid)
                                     }

@@ -1,4 +1,3 @@
-import React from "react";
 import axios from "axios";
 import { loginFailure, loginStart, loginSuccess } from "./AuthActions";
 
@@ -12,8 +11,9 @@ export const sellerlogin = async (user, dispatch) => {
     dispatch(loginSuccess(res.data));
   
 
-  } catch (err) {
-    dispatch(loginFailure());
+  } catch (error) {
+    console.log(error);
+    dispatch(loginFailure(error));
   }
 };
 
@@ -27,7 +27,8 @@ export const buyerlogin = async (user, dispatch) => {
     dispatch(loginSuccess(res.data));
  
     
-  } catch (err) {
-    dispatch(loginFailure());
+  } catch (error) {
+    console.log(error);
+    dispatch(loginFailure(error));
   }
 };

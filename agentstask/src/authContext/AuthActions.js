@@ -9,8 +9,9 @@ export const loginStart = () => ({
     payload: user,
   });
 
-  export const loginFailure = () => ({
+  export const loginFailure = (error) => ({
     type: "LOGIN_FAILURE",
+    error:error,
   });
   
  

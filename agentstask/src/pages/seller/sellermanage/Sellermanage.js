@@ -161,15 +161,16 @@ const Sellermanage = () => {
                                  
                                     <Card.Text>{element.titlee}</Card.Text>
                                     <Card.Text>
-                                      Mobile:{element.phonenumberr}
+                                      Mobile: {element.phonenumberr}
                                     </Card.Text>
                                     <Card.Text>
-                                      price:${element.price}
+                                      price: ${element.price}
                                     </Card.Text>
                                     <Button
                                       onClick={() =>
                                         handleDeleteLecture(element.appid)
                                       }
+                                      id="btn-delete"
                                     >
                                       Delete Lecture
                                     </Button>
@@ -205,12 +206,13 @@ const Sellermanage = () => {
                                   
                                     <Card.Text>{element.titlee}</Card.Text>
                                     <Card.Text>
-                                      Mobile:{element.phonenumberr}
+                                      Mobile: {element.phonenumberr}
                                     </Card.Text>
                                     <Card.Text>
-                                      price:${element.price}
+                                      price: ${element.price}
                                     </Card.Text>
                                     <Button
+                                      id="btn-accept"
                                       onClick={() =>
                                         handleAcceptbooking(element.appid)
                                       }
@@ -221,6 +223,7 @@ const Sellermanage = () => {
                                       onClick={() =>
                                         handleRjectbooking(element.appid)
                                       }
+                                      id="btn-reject"
                                     >
                                       Reject Booking
                                     </Button>
@@ -228,6 +231,7 @@ const Sellermanage = () => {
                                       onClick={() =>
                                         handleDeleteLecture(element.appid)
                                       }
+                                      id="btn-delete"
                                     >
                                       Delete Booking
                                     </Button>
@@ -263,15 +267,16 @@ const Sellermanage = () => {
                                   
                                     <Card.Text>{element.titlee}</Card.Text>
                                     <Card.Text>
-                                      Mobile:{element.phonenumberr}
+                                      Mobile: {element.phonenumberr}
                                     </Card.Text>
                                     <Card.Text>
-                                      price:${element.price}
+                                      price: ${element.price}
                                     </Card.Text>
                                     <Button
-                                    // onClick={() =>
-                                    //   handleCancleappointment(element.appid)
-                                    // }
+                                    id="btn-accept"
+                                    onClick={() =>
+                                      handleRjectbooking(element.appid)
+                                    }
                                     >
                                       Enlist again
                                     </Button>
@@ -307,12 +312,13 @@ const Sellermanage = () => {
                                   
                                     <Card.Text>{element.titlee}</Card.Text>
                                     <Card.Text>
-                                      Mobile:{element.phonenumberr}
+                                      Mobile: {element.phonenumberr}
                                     </Card.Text>
                                     <Card.Text>
-                                      price:${element.price}
+                                      price: ${element.price}
                                     </Card.Text>
                                     <Button
+                                    id="btn-reject"
                                       onClick={() =>
                                         handleDeleteLecture(element.appid)
                                       }
@@ -324,6 +330,7 @@ const Sellermanage = () => {
                                       onClick={() =>
                                         handleDeleteLecture(element.appid)
                                       }
+                                      id="btn-delete"
                                     >
                                       Delete Booking
                                     </Button>

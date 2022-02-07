@@ -109,7 +109,7 @@ const bookappointment = (req, res) => {
 //---------------##Cancel Appointment##---------------
 const cancelappointment = (req, res) => {
   let userid = req.token.userid;
-
+  
   const appointmentid = req.params.appid;
 
   //we look for the appointment , then we add the user to it and we change its stats to pending
@@ -187,9 +187,9 @@ const getallappointments = (req, res) => {
 const createappointment = (req, res) => {
   const id = req.token.sellerid;
   let sellerrid = id;
-
-  const query = `INSERT INTO Appointments (sellerrid) VALUES (?)`;
-  const data = [sellerrid];
+  let dates = req.body.dates;
+  const query = `INSERT INTO Appointments (sellerrid,dates) VALUES (?,?)`;
+  const data = [sellerrid,dates];
 
   connection.query(query, data, (error, result) => {
     if (error) {

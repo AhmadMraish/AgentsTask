@@ -11,13 +11,24 @@
     }
     .card{
         margin-left: 5px;
+       
 
         .card-body{
-            display: flex;
+           
+            display: flex; 
             flex-direction: column;
             justify-content: center;
             align-items: center;
         }
     }
     
+}
+
+#t-1ff{
+    margin: auto;
+}
+
+.react-datepicker-wrapper{
+    width: auto !important;
+    margin-bottom: 25px !important;
 }

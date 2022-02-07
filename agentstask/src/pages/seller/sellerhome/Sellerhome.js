@@ -10,12 +10,18 @@ import { Row } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Sellerhome.scss";
 
+
+
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+
 const Sellerhome = () => {
   const navigate = useNavigate();
   const [createdappointments, setCreatedappointments] = useState([]);
   const [pendingappointments, setPendingappointments] = useState([]);
   const [deletedlectures, setDeletedlectures] = useState([]);
   const [acceptedlectures, setAcceptedlectures] = useState([]);
+  const [startDate, setStartDate] = useState(new Date());
 
   let holder = JSON.parse(localStorage.getItem("user"));
 
@@ -24,6 +30,7 @@ const Sellerhome = () => {
 
   // ######### CREATE LECTURE ##############
   const handleCreatelecture = async () => {
+    let dates = startDate;
     const headers = {
       authorization: "Bearer " + JSON.parse(localStorage.getItem("user")).token,
     };
@@ -31,12 +38,14 @@ const Sellerhome = () => {
     await axios
       .post(
         "http://localhost:8800/appointments/createappointment",
-        {},
+        {dates},
         { headers }
       )
       .then((result) => {
         console.log("created lecture", result);
+        console.log("date", startDate);
       })
+      specificAppointments()
       .catch((error) => {
         console.log(error);
       });
@@ -98,9 +107,10 @@ const Sellerhome = () => {
           <Row xs={1} md={2} lg={4} className="g-5">
             <Card style={{ width: "35%" }}>
               {/* create */}
-              <Card.Body>
-                <Card.Title>{"Create Lecture"}</Card.Title>
-                <Button onClick={handleCreatelecture}>Submit</Button>
+              <Card.Body id="card-date">
+                {/* <Card.Title id="t-1ff">{"Create Lecture"}</Card.Title> */}
+              <DatePicker className="date-container" showTimeSelect selected={startDate} onChange={(date) => setStartDate(date)} />
+                <Button onClick={handleCreatelecture}>Create Lecture</Button>
   
               </Card.Body>
             </Card>

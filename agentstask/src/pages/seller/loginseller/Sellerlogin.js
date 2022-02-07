@@ -4,10 +4,8 @@ import { sellerlogin } from "../../../authContext/apiCalls";
 import { AuthContext } from "../../../authContext/AuthContext";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import { useNavigate } from "react-router-dom";
 
 const Sellerlogin = () => {
-  const navigate = useNavigate();
   const [emaill, setEmaill] = useState("");
   const [passwordd, setPasswordd] = useState("");
   const { dispatch } = useContext(AuthContext);
@@ -15,7 +13,6 @@ const Sellerlogin = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     await sellerlogin({ emaill, passwordd }, dispatch);
-    navigate("/sellerhome");
   };
 
   return (

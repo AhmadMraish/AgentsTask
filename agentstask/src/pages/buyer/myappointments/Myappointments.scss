@@ -12,6 +12,10 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    #myappointments-btn-primary{
+        background-color:var(--color-bloodred);
+    border-color:var(--color-bloodred);
+    }
     // .container{
        
     //     align-items: center;

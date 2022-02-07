@@ -1,6 +1,6 @@
 import "./App.scss";
-import React, { useContext } from "react";
-import { BrowserRouter as Router } from "react-router-dom";
+import React, { useContext, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { AuthContext } from "./authContext/AuthContext";
 // ### Buyer ####
@@ -20,9 +20,8 @@ import Errorpage from "./components/errorpage/Errorpage";
 import Searchresult from "./pages/search/Searchresult";
 
 function App() {
-
   const { user } = useContext(AuthContext);
-
+  const navigate = useNavigate();
   let isSeller;
   let isBuyer;
 
@@ -32,8 +31,6 @@ function App() {
     if (user.payload.type == 0) {
       isBuyer = true;
       isSeller = false;
-      
-
     }
     if (user.payload.type == 1) {
       isBuyer = false;
@@ -41,71 +38,75 @@ function App() {
     }
   }
 
+  useEffect(() => {
+    if (user) {
+      if (user.payload.type == 0) {
+        navigate("/buyerhome");
+      }
+      if (user.payload.type == 1) {
+        navigate("/sellerhome");
+      }
+    }
+  }, []);
+  
+
   return (
-    <Router>
-      <Routes>
-       
-        <Route exact path="/" element={<Landingpage />} />
+    <Routes>
+      <Route exact path="/" element={<Landingpage />} />
+      <Route exact path="/buyersignup" element={<Signupbuyer />} />
+      <Route exact path="/sellersignup" element={<Signupseller />} />
 
-        <Route exact path="/buyerlogin" element={<Loginbuyer />} />
+      <Route
+        exact
+        path="/search/:sellername"
+        element={user ? <Searchresult /> : <Navigate to="/" />}
+      />
 
-        <Route exact path="/buyersignup" element={<Signupbuyer />} />
+      <Route
+        exact
+        path="/buyerlogin"
+        element={
+          !user ? (
+            <Loginbuyer />
+          ) : isBuyer ? (
+            <Navigate to="/buyerhome" />
+          ) : (
+            <></>
+          )
+        }
+      />
 
-        <Route exact path="/sellerlogin" element={<Sellerlogin />} />
+      <Route
+        exact
+        path="/sellerlogin"
+        element={
+          !user ? (
+            <Sellerlogin />
+          ) : isSeller ? (
+            <Navigate to="/sellerhome" />
+          ) : (
+            <></>
+          )
+        }
+      />
 
-        <Route exact path="/sellersignup" element={<Signupseller />} />
-
-        <Route
-          exact
-          path="/search/:sellername"
-          element={<Searchresult /> }
-        />
-        
-        {isBuyer ?(
+      {isBuyer && (
         <>
-          <Route
-            exact
-            path="/buyerhome"
-            element={<Buyerhome /> }
-          />
-
-          <Route
-            exact
-            path="/viewseller"
-            element={<Sellerview /> }
-          />
-          <Route
-            exact
-            path="/myappointments"
-            element={<Myappointments /> }
-          />
-
-          </>
-         
-        ):isSeller?(
-            <>
-          <Route
-            exact
-            path="/sellerhome"
-            element={ <Sellerhome /> }
-          />
-
-          <Route
-            exact
-            path="/managelectures"
-            element={ <Sellermanage /> }
-          />
-
+          <Route exact path="/buyerhome" element={<Buyerhome />} />
+          <Route exact path="/myappointments" element={<Myappointments />} />
+          <Route exact path="/viewseller" element={<Sellerview />} />
         </>
-        ):<></>}
-        <Route
-          exact
-          path="*"
-          element={<Errorpage /> }
-        />
+      )}
 
-      </Routes>
-    </Router>
+      {isSeller && (
+        <>
+          <Route exact path="/sellerhome" element={<Sellerhome />} />
+          <Route exact path="/managelectures" element={<Sellermanage />} />
+        </>
+      )}
+
+      <Route exact path="*" element={<Errorpage />} />
+    </Routes>
   );
 }
 

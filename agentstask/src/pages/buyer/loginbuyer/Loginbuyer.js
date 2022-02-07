@@ -1,22 +1,33 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { buyerlogin } from "../../../authContext/apiCalls";
 import { AuthContext } from "../../../authContext/AuthContext";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import "./Loginbuyer.scss";
+import { CircularProgress } from "@material-ui/core";
 
 const Loginbuyer = () => {
   const [emaill, setEmaill] = useState("");
   const [passwordd, setPasswordd] = useState("");
-  const { dispatch } = useContext(AuthContext);
-  const navigate = useNavigate();
+  const { dispatch, isFetching, error } = useContext(AuthContext);
+  const [message, setMessage] = useState(false);
 
   const handleLogin = async (e) => {
+    setMessage(false);
     e.preventDefault();
     await buyerlogin({ emaill, passwordd }, dispatch);
-    navigate("/buyerhome");
+    if (error) {
+      setMessage(true);
+    }
+   
   };
+
+  useEffect(() => {
+    setTimeout(function () {
+      setMessage(false);
+    }, 5000);
+  }, [message]);
 
   return (
     <div className="login__buyer">
@@ -42,9 +53,15 @@ const Loginbuyer = () => {
           />
         </Form.Group>
 
-        <Button onClick={handleLogin} variant="primary" type="submit">
-          Submit
+        <Button
+          onClick={handleLogin}
+          variant="primary"
+          type="submit"
+          disabled={isFetching}
+        >
+          {isFetching ? <CircularProgress size="20px" /> : "Login"}
         </Button>
+        {message ? <div>Wrong credentials</div> : ""}
       </Form>
     </div>
   );
