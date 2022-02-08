@@ -8,6 +8,9 @@ import Card from "react-bootstrap/Card";
 import Container from "react-bootstrap/Container";
 import { Row } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
+import moment from "moment";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 const Sellerview = () => {
   const location = useLocation();
@@ -82,41 +85,52 @@ const Sellerview = () => {
               <Container>
                 <Card.Text>{seller.country}</Card.Text>
                 <Card.Text>{seller.phonenumberr}</Card.Text>
-                <Card.Text>price:${seller.price}</Card.Text>
+                <Card.Text>price: ${seller.price}</Card.Text>
                 <Card.Text>{seller.emaill}</Card.Text>
               </Container>
             </Card.Body>
           </Card>
         </Container>
       </div>
-
-      <div className="seller_container_list">
-        <Row xs={1} md={2} lg={4} className="g-5">
-          {getspecificappointments &&
-            getspecificappointments.map((element, index) => {
-              return (
-                <>
-                  <Container className="appointment__container">
-                    <Card key={index} style={{ width: "100%" }}>
-                      <Card.Body>
-                        <Card.Title>{element.dates}</Card.Title>
-                        <Card.Text></Card.Text>
+      {getspecificappointments.length ? (
+        <div className="seller_container_list">
+          <Row xs={1} md={2} lg={4} className="g-5">
+            {getspecificappointments &&
+              getspecificappointments.map((element, index) => {
+                return (
+                  <>
+                    <Container className="appointment__container">
+                      <Card key={index} style={{ width: "100%" }}>
+                        <Card.Body>
+                          <Card.Title>{moment(element.dates).format('MMMM Do YYYY, h:mm:ss a')}</Card.Title>
+                          <Card.Text></Card.Text>
                           <Button
                             onClick={() => handleBooking(element.appid)}
                             variant="primary"
                           >
                             Book Lecture
                           </Button>
-                        <Container>
-                        </Container>
-                      </Card.Body>
-                    </Card>
-                  </Container>
-                </>
-              );
-            })}
-        </Row>
-      </div>
+                          <Container></Container>
+                        </Card.Body>
+                      </Card>
+                    </Container>
+                  </>
+                );
+              })}
+          </Row>
+        </div>
+      ) : (
+        <div>
+          <div> No lectures Available at this moment </div>
+          <DatePicker
+            className="date-container"
+            showTimeSelect
+            // selected={startDate}
+            // onChange={(date) => setStartDate(date)}
+          />
+          <button> Request lecture </button>
+        </div>
+      )}
     </div>
   );
 };

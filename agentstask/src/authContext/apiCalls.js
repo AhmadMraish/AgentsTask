@@ -2,6 +2,7 @@ import axios from "axios";
 import { loginFailure, loginStart, loginSuccess } from "./AuthActions";
 
 export const sellerlogin = async (user, dispatch) => {
+
   dispatch(loginStart());
   try {
     const res = await axios.post(
@@ -9,11 +10,10 @@ export const sellerlogin = async (user, dispatch) => {
       user
     );
     dispatch(loginSuccess(res.data));
-  
-
   } catch (error) {
-   await dispatch(loginFailure());
-   
+    //  console.log(error.response.data);
+    await dispatch(loginFailure(error));
+    
   }
 };
 
@@ -25,10 +25,11 @@ export const buyerlogin = async (user, dispatch) => {
       user
     );
     dispatch(loginSuccess(res.data));
+   
  
     
   } catch (error) {
-  await  dispatch(loginFailure());
-    
+  await  dispatch(loginFailure(error));
+ 
   }
 };

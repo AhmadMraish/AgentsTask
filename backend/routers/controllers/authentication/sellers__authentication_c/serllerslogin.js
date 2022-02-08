@@ -14,10 +14,12 @@ const sellerslogin = async (req, res) => {
   const data = [emaill, passwordd];
 
   connection.query(query, data, async (error, result) => {
-    if (result.length == []) {
+    // console.log(result,"bb");
+    if (result.length == 0) {
       return res.status(404).json({
         success: false,
         message: `The sellers email doesn't exist`,
+       
       });
     } else if (error) {
       return res.status(500).json({
@@ -27,7 +29,7 @@ const sellerslogin = async (req, res) => {
       });
     }
 
-    if (result.length != []) {
+    if (result.length) {
       const valid = await bcrypt.compare(passwordd, result[0].passwordd);
       if (valid) {
         const payload = {

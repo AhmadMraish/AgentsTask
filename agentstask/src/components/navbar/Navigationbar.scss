@@ -6,5 +6,26 @@
 
 #nav-link-id{
     text-decoration: none !important;
-    
+   color:var(--main-blue) !important;
+   vertical-align: middle;
+}   
+// .btn btn-outline-success{
+//     color:blue;
+// }
+
+#myappointments__navlink{
+    text-decoration: none !important;
+    color:var(--main-blue) !important;
+    vertical-align: middle;
+}
+
+.navbar-brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color:var(--secondary-lightblue) !important;
+}
+
+*a{
+    text-decoration:none;
+    vertical-align: middle;
 }

@@ -12,13 +12,17 @@ const Loginbuyer = () => {
   const [passwordd, setPasswordd] = useState("");
   const { dispatch, isFetching, error } = useContext(AuthContext);
   const [message, setMessage] = useState(false);
+  const [errormessage, setErrormessage] = useState("");
 
   const handleLogin = async (e) => {
     e.preventDefault();
     setMessage(false);
     await buyerlogin({ emaill, passwordd }, dispatch);
-    if (error) {
-      setMessage(true);
+    if(error){
+      // console.log("test",error.response.data);
+      
+      setErrormessage("Invalid email and/or password")
+       setMessage(true)
     }
    
   };
@@ -31,8 +35,9 @@ const Loginbuyer = () => {
 
   return (
     <div className="login__buyer">
-      <Form className="login__form">
-        <Form.Group className="mb-3" controlId="formBasicEmail">
+      <div className="loginbuyer__form">
+      <Form >
+        <Form.Group  className="mb-3" controlId="formBasicEmail">
           <Form.Label>Email address</Form.Label>
           <Form.Control
             onChange={(e) => setEmaill(e.target.value)}
@@ -61,8 +66,9 @@ const Loginbuyer = () => {
         >
           {isFetching ? <CircularProgress size="20px" /> : "Login"}
         </Button>
-        {message ? <div>Wrong credentials</div> : ""}
+        {message ? <div>{errormessage}</div> : ""}
       </Form>
+      </div>
     </div>
   );
 };

@@ -14,6 +14,11 @@ const connection = require("../../db/db");
 //     country
 
 // get all sellers
+
+// SELECT * FROM Appointments INNER JOIN sellers ON Appointments.sellerrid=sellers.sellerid
+//   WHERE Appointments.sellerrid=sellers.sellerid;
+
+// SELECT * FROM sellers JOIN Appointments WHERE Appointments.sellerrid=sellers.sellerid;
 const getallsellers = (req, res) => {
   const query = `SELECT * FROM sellers`;
   connection.query(query, (error, result) => {
@@ -40,6 +45,32 @@ const getallsellers = (req, res) => {
   });
 };
 
+// get seller and his/her appointments
+const getallsellersandtheirappointments = (req, res) => {
+  const query = `SELECT * FROM sellers JOIN Appointments WHERE Appointments.sellerrid=sellers.sellerid;`;
+  connection.query(query, (error, result) => {
+    if (!result.length) {
+      return res.status(204).json({
+        success: false,
+        message: `No registered sellers in the DB`,
+      });
+    } else if (error) {
+      return res.status(500).json({
+        success: false,
+        message: `Server Error`,
+        error: error,
+      });
+    }
+
+    if (result) {
+      return res.status(200).json({
+        success: true,
+        message: `All sellers and their appointments`,
+        result: result,
+      });
+    }
+  });
+};
 // get seller by id
 const getsellerbyid = (req, res) => {
   let id = req.token.sellerid;
@@ -103,4 +134,9 @@ const updatesellerbyid = (req, res) => {
     });
   });
 };
-module.exports = { getallsellers, getsellerbyid, updatesellerbyid };
+module.exports = {
+  getallsellers,
+  getsellerbyid,
+  updatesellerbyid,
+  getallsellersandtheirappointments,
+};

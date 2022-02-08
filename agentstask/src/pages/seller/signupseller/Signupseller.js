@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./Signupseller.scss";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -9,7 +9,6 @@ import Button from "react-bootstrap/Button";
 
 const Signupseller = () => {
   const navigate = useNavigate();
-  const [error, setError] = useState("");
   /////////////////////////
   const [emaill, setEmaill] = useState("");
   const [passwordd, setPasswordd] = useState("");
@@ -36,44 +35,40 @@ const Signupseller = () => {
     setPhonenumberr(phonenumberrRef.current.value);
 
     var regex = /[\!\@\#\$\%\^\&\*\)\(\+\=\.\<\>\{\}\[\]\:\;\'\"\|\~\`\_\-]/g;
+    if (confirmpass.length || passwordd.length == 0) {
+      setPassworderror("Password fields can't be empty");
+    }
     if (confirmpass !== passwordd) {
       setPassworderror("Password fields do not match");
     } else if (passwordd.length < 6) {
       setPassworderror("Password Must be greater Than 6 characters");
     } else if (regex.test(passwordd) == false) {
       setPassworderror("Password must contain at least one special character");
-      ///////////////////////////////////
+
     }
-
-
   };
-
+///////////Needs validation, currently NOT//////////
   const handleSet = async (e) => {
     e.preventDefault();
 
-    
-      const data = {
-        emaill,
-        passwordd,
-        sellername,
-        phonenumberr,
-        titlee,
-        informationn,
-        price,
-        country,
-      };
-      try {
-        await axios.post(
-          "http://localhost:8800/sellersauth/sellerssignup",
-          data
-        );
-      } catch (error) {
-        if (error.message == "Request failed with status code 409") {
-          setPassworderror("Email has already been taken");
-        }
+    const data = {
+      emaill,
+      passwordd,
+      sellername,
+      phonenumberr,
+      titlee,
+      informationn,
+      price,
+      country,
+    };
+    try {
+      await axios.post("http://localhost:8800/sellersauth/sellerssignup", data);
+    } catch (error) {
+      if (error.message == "Request failed with status code 409") {
+        setPassworderror("Email has already been taken");
       }
-      navigate("/sellerlogin");
-    
+    }
+    navigate("/sellerlogin");
   };
 
   return (
@@ -110,9 +105,8 @@ const Signupseller = () => {
           >
             Next
           </Button>
-
         </Form>
-      ) : (
+      ) :(
         //
         <Form className="signupseller__form">
           <Form.Group className="mb-3" controlId="formBasicInput">

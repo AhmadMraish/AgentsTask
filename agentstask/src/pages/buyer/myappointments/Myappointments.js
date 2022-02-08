@@ -11,6 +11,7 @@ import Tabs from "react-bootstrap/Tabs";
 import Tab from "react-bootstrap/Tab";
 import TabContainer from "react-bootstrap/TabContainer";
 import TabContent from "react-bootstrap/TabContent";
+import moment from 'moment';
 
 const Myappointments = () => {
   const [myacceptedappointments, setMyacceptedappointments] = useState([]);
@@ -90,20 +91,20 @@ const Myappointments = () => {
                       return (
                         <>
                           <Container>
-                            <Card style={{ width: "18rem" }}>
+                            <Card style={{ width: "19rem" }}>
                               <Card.Img
                                 variant="top"
                                 src="https://www.pngkey.com/png/detail/114-1149878_setting-user-avatar-in-specific-size-without-breaking.png"
                               />
                               <Card.Body>
-                                <Card.Title>{element.dates}</Card.Title>
+                                <Card.Title>{moment(element.dates).format('MMMM Do YYYY, h:mm:ss a')}</Card.Title>
                                 <Card.Text>{element.sellername}</Card.Text>
                                 
                                   <Card.Text>{element.titlee}</Card.Text>
                                   <Card.Text>
-                                    Mobile:{element.phonenumberr}
+                                    Mobile: {element.phonenumberr}
                                   </Card.Text>
-                                  <Card.Text>price:${element.price}</Card.Text>
+                                  <Card.Text>Price: ${element.price}</Card.Text>
                                   <Button id="myappointments-btn-primary"
                                     onClick={() =>
                                       handleCancleappointment(element.appid)
@@ -131,21 +132,24 @@ const Myappointments = () => {
                       return (
                         <>
                           <Container>
-                            <Card style={{ width: "18rem" }}>
+                            <Card style={{ width: "19rem" }}>
                               <Card.Img
                                 variant="top"
                                 src="https://www.pngkey.com/png/detail/114-1149878_setting-user-avatar-in-specific-size-without-breaking.png"
                               />
                               <Card.Body>
-                                <Card.Title>{element.dates}</Card.Title>
+                                <Card.Title>{moment(element.dates).format('MMMM Do YYYY, h:mm:ss a')}</Card.Title>
                                 <Card.Text>{element.sellername}</Card.Text>
                                 
                                   <Card.Text>{element.titlee}</Card.Text>
                                   <Card.Text>
-                                    Mobile:{element.phonenumberr}
+                                    Mobile: {element.phonenumberr}
                                   </Card.Text>
                                   <Card.Text>
-                                    Payment due:${element.price}
+                                    Payment due: ${element.price}
+                                  </Card.Text>
+                                  <Card.Text className="zoom__link">
+                                    Zoom Link{}
                                   </Card.Text>
                                
                               </Card.Body>

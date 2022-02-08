@@ -84,10 +84,12 @@ const Signupbuyer = () => {
             placeholder=""
           />
         </Form.Group>
-        <div>{message}</div>
+        <div className="signupbuyer__spacer">
         <Button onClick={handlesignupbuyer} variant="primary" type="submit">
           Submit
         </Button>
+        <div className="error__message">{message}</div>
+        </div>
       </Form>
     </div>
   );

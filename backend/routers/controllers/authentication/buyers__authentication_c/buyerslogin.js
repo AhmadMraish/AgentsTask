@@ -14,7 +14,7 @@ const buyerslogin = async (req, res) => {
   const data = [emaill, passwordd];
 
   connection.query(query, data, async (error, result) => {
-    if (result.length == []) {
+    if (result.length == 0) {
     
       return res.status(404).json({
         success: false,
@@ -29,7 +29,7 @@ const buyerslogin = async (req, res) => {
       });
     }
 
-    if (result.length != []) {
+    if (result.length) {
       console.log("second");
       const valid = await bcrypt.compare(passwordd, result[0].passwordd);
       if (valid) {

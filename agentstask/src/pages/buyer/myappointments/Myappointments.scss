@@ -12,9 +12,25 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    .card-text:last-child{
+        color:var(--main-blue);
+        &:hover{
+            cursor: pointer;
+            
+            color:var(--secondary-lightblue);
+        }
+    }
     #myappointments-btn-primary{
         background-color:var(--color-bloodred);
     border-color:var(--color-bloodred);
+    .card-text:last-child{
+        color:var(--main-blue);
+        &:hover{
+            cursor: pointer;
+            
+            color:var(--secondary-lightblue);
+        }
+    }
     }
     // .container{
        
@@ -24,3 +40,4 @@
         
     // }
 }
+

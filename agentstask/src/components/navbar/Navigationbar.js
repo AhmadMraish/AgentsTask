@@ -61,13 +61,13 @@ const Navigationbar = () => {
                 </Link>
 
                 <Link to={`/myappointments`}>
-                  <Nav.Link href="#action2">My Appointments</Nav.Link>
+                  <Nav.Link id="myappointments__navlink" href="#action2">My Appointments</Nav.Link>
                 </Link>
               </>
             ) : (
               <>
                 <Link to={`/sellerhome`}>
-                  <Nav.Link href="#action1">Home</Nav.Link>
+                  <Nav.Link id="home__navlink" href="#action1">Home</Nav.Link>
                 </Link>
               </>
             )}
@@ -84,12 +84,12 @@ const Navigationbar = () => {
             />
             <Button
             onClick={()=>search()}
-              variant="outline-success"
+              variant="outline-primary"
             >
               Search
             </Button>
           </Form>
-          <Button onClick={handleLogout} variant="outline-success">
+          <Button onClick={handleLogout} variant="outline-primary">
             Logout
           </Button>
         </Navbar.Collapse>

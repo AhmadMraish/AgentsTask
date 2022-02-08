@@ -6,13 +6,20 @@
     width: 100%;
     position: relative;
 
+    
     .seller__form{
-        padding-left: 25px;
-        // background-color: grey;
-        width: 40%;
-        margin: auto;
+        border: 2px solid #ced4da;
+        padding: 15px 15px;
+        border-radius: 5px;
+        background-color: white;
+        width: 25%;
+        // text-align: center;
         position: absolute;
-        bottom: 23.5%;
+        top: 50%;
+        left: 0;
+        right: 0;
+        margin: auto;
+        transform: translateY(-50%);
     }
 
 }

@@ -1,11 +1,37 @@
-.buyers_home_wrapper{
-    margin-left: 75px;
-    margin-top: 25px;
-}
+.buyers__home__container {
+  width: 100%;
+  height: 100%;
+  padding: auto;
+  margin: auto;
+  .buyers_home_wrapper_rela {
+    position: relative;
+    width: 100%;
+    height: 100%;
 
-.card-body{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    overflow-x: hidden;
+
+    .buyers_home_wrapper_abso {
+      overflow-x: hidden;
+      .buyers_home_title {
+        margin-left: 25px;
+        margin-top: 25px;
+      }
+
+      .g-5 {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        justify-content: space-between;
+      }
+    }
+
+    .card-body {
+      margin: 15px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+  }
 }

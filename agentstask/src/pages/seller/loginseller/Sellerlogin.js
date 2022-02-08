@@ -30,6 +30,7 @@ const Sellerlogin = () => {
 
   return (
     <div className="login__seller">
+      <div className="loginseller__form">
       <Form className="seller__form">
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Email address</Form.Label>
@@ -57,6 +58,7 @@ const Sellerlogin = () => {
         </Button>
         {message ? <div>Wrong credentials</div> : ""}
       </Form>
+    </div>
     </div>
   );
 };
